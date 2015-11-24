@@ -63,6 +63,17 @@
 //
 
 
+// Ask the browser for permission to show notifications
+// Taken from https://developer.mozilla.org/...
+//window.addEventListener('load', function () {
+//    Notification.requestPermission(function (status) {
+//// This allows to use Notification.permission with Chrome/Safari
+//        if (Notification.permission !== status) {
+//            Notification.permission = status;
+//        }
+//    });
+//});
+
 // Create an instance of vanilla dragon
 //var dragon = swampdragon.open({onopen: onOpen, onchannelmessage: onChannelMessage});
 
@@ -70,31 +81,15 @@
 var notificationsList = document.getElementById("notifications");
 
 // New channel message received
-//swampdragon.onChannelMessage(function (channels, message) {
-//// Add the notification
-//    addNotification((message.data));
-//});
+swampdragon.onChannelMessage(function (channels, message) {
+// Add the notification
+    addNotification((message.data));
+});
 
 // SwampDragon connection open
 swampdragon.open(function () {
 // Once the connection is open, subscribe to notifications
-    swampdragon.subscribe('notifications', 'notifications', function addNotification(notification) {
-// If we have permission to show browser notifications
-// we can show the notifiaction
-        if (window.Notification && Notification.permission === "granted") {
-            new Notification(notification.message);
-        }
-
-// Add the new notification
-        var li = document.createElement("li");
-        notificationsList.insertBefore(li, notificationsList.firstChild);
-        li.innerHTML = notification.message;
-
-// Remove excess notifications
-        while (notificationsList.getElementsByTagName("li").length > 10) {
-            notificationsList.getElementsByTagName("li")[10].remove();
-        }
-    });
+    swampdragon.subscribe('notifications', 'notifications');
 });
 
 // Add new notifications
@@ -111,7 +106,7 @@ function addNotification(notification) {
     li.innerHTML = notification.message;
 
 // Remove excess notifications
-    while (notificationsList.getElementsByTagName("li").length > 10) {
-        notificationsList.getElementsByTagName("li")[10].remove();
+    while (notificationsList.getElementsByTagName("li").length > 5) {
+        notificationsList.getElementsByTagName("li")[5].remove();
     }
 }
