@@ -1,7 +1,5 @@
-from django.views.generic import ListView
-from swampdragon.permissions import login_required
-
-from .models import Notification
+from django.views.generic import TemplateView, ListView
+from demo.models import Notification
 
 
 class Notifications(ListView):
