@@ -1,3 +1,39 @@
+{#<!DOCTYPE html>#}
+{#{% load static %}#}
+{#<html>#}
+{##}
+{#<head lang="en">#}
+{#    <meta charset="UTF-8">#}
+{#    <title></title>#}
+{#</head>#}
+{#<body>#}
+{#{{ user.username }}#}
+{#<h1>Notifications demo</h1>#}
+{##}
+{#<!-- This is our list of notifications -->#}
+{#<ul id="notifications">#}
+{##}
+{#    {% for notification in object_list %}#}
+{#        <li>{{ notification.message }}</li>#}
+{#    {% endfor %}#}
+{#</ul>#}
+{##}
+{##}
+{#<!-- SwampDragon -->#}
+{#<script type="text/javascript" src="{% static 'swampdragon/js/vendor/sockjs-0.3.4.min.js' %}"></script>#}
+{#<script type="text/javascript" src="{% static 'swampdragon/js/dist/swampdragon.js' %}"></script>#}
+{#<script type="text/javascript" src="{% static 'swampdragon/js/dist/datamapper.js' %}"></script>#}
+{#<script type="text/javascript" src="{% static 'swampdragon/js/legacy/swampdragon-vanilla.js' %}"></script>#}
+{#<script type="text/javascript" src="http://localhost:9999/settings.js' %}"></script>#}
+{##}
+{#<!-- notifications -->#}
+{#<script type="text/javascript" src="{% static 'notifications.js' %}"></script>#}
+{#</body>#}
+{#</html>#}
+
+{% load staticfiles %}
+{% load swampdragon_tags %}
+
 <!DOCTYPE html>
 <html>
 <head lang="en">
@@ -5,12 +41,11 @@
     <title></title>
 </head>
 <body>
-{{ user.username }}
+
 <h1>Notifications demo</h1>
 
 <!-- This is our list of notifications -->
 <ul id="notifications">
-
     {% for notification in object_list %}
         <li>{{ notification.message }}</li>
     {% endfor %}
@@ -18,13 +53,20 @@
 
 
 <!-- SwampDragon -->
-<script type="text/javascript" src="{{ STATIC_URL }}swampdragon/js/vendor/sockjs-0.3.4.min.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}swampdragon/js/swampdragon.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}swampdragon/js/datamapper.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}swampdragon/js/swampdragon-vanilla.js"></script>
-<script type="text/javascript" src="http://localhost:9999/settings.js"></script>
+{% swampdragon_settings %}
+<script type="text/javascript" src="{% static 'swampdragon/js/dist/swampdragon.js' %}"></script>
+
+
+<script type="text/javascript" src="{% static 'swampdragon/js/vendor/sockjs-0.3.4.min.js' %}"></script>
+
+<script type="text/javascript" src="{% static 'swampdragon/js/legacy/swampdragon-vanilla.js' %}"></script>
+<script type="text/javascript" src="{% static 'notifications.js' %}"></script>
+<script type="text/javascript" src="{% static 'swampdragon/js/dist/datamapper.js' %}"></script>
+
+<script type="text/javascript" src="https://127.0.0.1:9999/settings.js"></script>
 
 <!-- notifications -->
-<script type="text/javascript" src="{{ STATIC_URL }}notifications.js"></script>
+<script type="text/javascript" src="{% static 'notifications.js' %}"></script>
+
 </body>
 </html>
