@@ -41,18 +41,19 @@
     <title></title>
 
 </head>
-<body ng-app="NotiApp">
-{% verbatim %}
-<h1>Notifications demo</h1>
-
-<div ng-controller="NotiController">
-    <ul>
-        <li ng-repeat="noti in notiList">
-            {{ noti.message }}
-        </li>
-    </ul>
-</div>
-{% endverbatim %}
+<body >
+{#ng-app="NotiApp"#}
+{#{% verbatim %}#}
+{#<h1>Notifications demo</h1>#}
+{##}
+{#<div ng-controller="NotiController">#}
+{#    <ul>#}
+{#        <li ng-repeat="noti in notiList">#}
+{#            {{ noti.message }}#}
+{#        </li>#}
+{#    </ul>#}
+{#</div>#}
+{#{% endverbatim %}#}
 <!-- This is our list of notifications-->
 <ul id="notifications">
     {% for notification in object_list %}
@@ -72,12 +73,12 @@
 
 {#    <script type="text/javascript" src="https://127.0.0.1:9999/settings.js"></script>#}
 
-<script type="text/javascript" src="{% static 'angular.js' %}"></script>
+{#<script type="text/javascript" src="{% static 'angular.js' %}"></script>#}
 
 <!-- notifications -->
 <script type="text/javascript" src="{% static 'notifications.js' %}"></script>
-<script type="text/javascript" src="{% static 'app.js' %}"></script>
-<script type="text/javascript" src="{% static 'controllers.js' %}"></script>
+{#<script type="text/javascript" src="{% static 'app.js' %}"></script>#}
+{#<script type="text/javascript" src="{% static 'controllers.js' %}"></script>#}
 
 </body>
 </html>

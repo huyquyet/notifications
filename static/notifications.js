@@ -70,10 +70,10 @@
 var notificationsList = document.getElementById("notifications");
 
 // New channel message received
-//swampdragon.onChannelMessage(function (channels, message) {
-//// Add the notification
-//    addNotification((message.data));
-//});
+swampdragon.onChannelMessage(function (channels, message) {
+// Add the notification
+    addNotification((message.data));
+});
 
 // SwampDragon connection open
 swampdragon.open(function () {
